@@ -72,7 +72,7 @@ class FastCircleLayer: CALayer {
     }
     
     //MARK: Public Methods
-    func startAnimation() {
+    public func startAnimation() {
         circle.isHidden = false
         point.isHidden  = false
         
@@ -114,7 +114,7 @@ class FastCircleLayer: CALayer {
         addPointAnimation()
     }
     
-    func endAnimation(finish: Bool) {
+    public func endAnimation(finish: Bool) {
         if finish {
             stop = false
             rotated       = 0

@@ -25,9 +25,9 @@
 
 import UIKit
 
-open class CRRefreshFooterView: CRRefreshComponent {
+public class CRRefreshFooterView: CRRefreshComponent {
     
-    open var noMoreData = false {
+    public var noMoreData = false {
         didSet {
             if noMoreData != oldValue {
                 state = .idle
@@ -35,7 +35,7 @@ open class CRRefreshFooterView: CRRefreshComponent {
         }
     }
     
-    open override var isHidden: Bool {
+    public override var isHidden: Bool {
         didSet {
             if isHidden == true {
                 scrollView?.contentInset.bottom = scrollViewInsets.bottom
@@ -57,7 +57,7 @@ open class CRRefreshFooterView: CRRefreshComponent {
         self.animator = animator
     }
     
-    open override func didMoveToSuperview() {
+    public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
@@ -69,7 +69,16 @@ open class CRRefreshFooterView: CRRefreshComponent {
         }
     }
     
-    open override func start() {
+    public func noticeNoMoreData() {
+        noMoreData = true
+        self.state = .noMoreData
+    }
+    
+    public func resetNoMoreData() {
+        noMoreData = false
+    }
+    
+    public override func start() {
         guard let scrollView = scrollView else { return }
         super.start()
         animator.refreshBegin(view: self)
@@ -82,7 +91,7 @@ open class CRRefreshFooterView: CRRefreshComponent {
         })
     }
     
-    open override func stop() {
+    public override func stop() {
         guard let scrollView = scrollView else { return }
         animator.refreshEnd(view: self, finish: false)
         UIView.animate(withDuration: CRRefreshComponent.animationDuration, delay: 0, options: .curveLinear, animations: {
@@ -107,7 +116,7 @@ open class CRRefreshFooterView: CRRefreshComponent {
         }
     }
     
-    open override func sizeChange(change: [NSKeyValueChangeKey : Any]?) {
+    public override func sizeChange(change: [NSKeyValueChangeKey : Any]?) {
         guard let scrollView = scrollView else { return }
         super.sizeChange(change: change)
         let targetY = scrollView.contentSize.height + scrollViewInsets.bottom
@@ -118,7 +127,7 @@ open class CRRefreshFooterView: CRRefreshComponent {
         }
     }
     
-    open override func offsetChange(change: [NSKeyValueChangeKey : Any]?) {
+    public override func offsetChange(change: [NSKeyValueChangeKey : Any]?) {
         guard let scrollView = scrollView else { return }
         super.offsetChange(change: change)
         guard isRefreshing == false && noMoreData == false && isHidden == false else {
@@ -147,14 +156,4 @@ open class CRRefreshFooterView: CRRefreshComponent {
             }
         }
     }
-    
-    open func noticeNoMoreData() {
-        noMoreData = true
-        self.state = .noMoreData
-    }
-    
-    open func resetNoMoreData() {
-        noMoreData = false
-    }
-
 }

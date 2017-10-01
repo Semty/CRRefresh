@@ -41,7 +41,7 @@ class FastArrowLayer: CALayer,
     var animationEnd: (()->Void)?
     
     //MARK: Initial Methods
-    init(frame: CGRect, color: UIColor = .init(rgba: "#A5A5A5"), lineWidth: CGFloat = 1) {
+    public init(frame: CGRect, color: UIColor = .init(rgba: "#A5A5A5"), lineWidth: CGFloat = 1) {
         self.color      = color
         self.lineWidth  = lineWidth
         super.init()
@@ -91,7 +91,7 @@ class FastArrowLayer: CALayer,
     
     //MARK: public Methods
     @discardableResult
-    func startAnimation() -> Self {
+    public func startAnimation() -> Self {
         let start = CABasicAnimation(keyPath: "strokeStart")
         start.duration  = animationDuration
         start.fromValue = 0
@@ -115,7 +115,7 @@ class FastArrowLayer: CALayer,
         return self
     }
 
-    func endAnimation() {
+    public func endAnimation() {
         arrowLayer?.isHidden = false
         lineLayer?.isHidden  = false
         arrowLayer?.removeAllAnimations()
@@ -144,7 +144,7 @@ class FastArrowLayer: CALayer,
         lineLayer?.add(end, forKey: "strokeEnd")
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
             if let anim = anim as? CABasicAnimation {
                 if anim.keyPath == "strokeStart" {

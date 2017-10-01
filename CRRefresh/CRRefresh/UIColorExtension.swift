@@ -82,7 +82,7 @@ extension UIColor {
      
      - parameter rgba: String value.
      */
-    convenience init(rgba_throws rgba: String) throws {
+    convenience public init(rgba_throws rgba: String) throws {
         guard rgba.hasPrefix("#") else {
             throw UIColorInputError.missingHashMarkAsPrefix
         }
@@ -113,7 +113,7 @@ extension UIColor {
      
      - parameter rgba: String value.
      */
-    convenience init(rgba: String, defaultColor: UIColor = UIColor.clear) {
+    convenience public init(rgba: String, defaultColor: UIColor = UIColor.clear) {
         guard let color = try? UIColor(rgba_throws: rgba) else {
             self.init(cgColor: defaultColor.cgColor)
             return
