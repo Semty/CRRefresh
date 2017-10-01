@@ -47,20 +47,21 @@ open class NormalHeaderAnimator: UIView, CRRefreshProtocol {
 
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
-        imageView.image = crBundle?.imageFromBundle("refresh_arrow")
+        imageView.image = #imageLiteral(resourceName: "refresh_arrow")
         return imageView
     }()
     
     fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
-        label.font = UIFont.systemFont(ofSize: 14.0)
-        label.textColor = UIColor.init(white: 0.625, alpha: 1.0)
+        label.font = UIFont(name: "Inconsolata-Bold",
+                            size: 15.0)
+        label.textColor = UIColor.init(hex6: 0xE8ECEE, alpha: 1.0)
         label.textAlignment = .left
         return label
     }()
     
     fileprivate let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
         indicatorView.isHidden = true
         return indicatorView
     }()
