@@ -77,7 +77,7 @@ class FastCircleLayer: CALayer {
         point.isHidden  = false
         
         codeTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
-        codeTimer?.scheduleRepeating(deadline: .now(), interval: .milliseconds(42))
+        codeTimer?.schedule(deadline: .now(), repeating: .milliseconds(42))
         codeTimer?.setEventHandler(handler: { [weak self] in
             guard self != nil else {
                 return
@@ -150,7 +150,7 @@ class FastCircleLayer: CALayer {
         let width  = frame.size.width
         let path = UIBezierPath()
         path.addArc(withCenter: .init(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(Double.pi * 1.5), endAngle: CGFloat((Double.pi * 1.5) - 0.1), clockwise: false)
-        point.lineCap     = kCALineCapRound
+        point.lineCap     = CAShapeLayerLineCap.round
         point.lineWidth   = lineWidth*2
         point.fillColor   = UIColor.clear.cgColor
         point.strokeColor = pointColor.cgColor
@@ -167,10 +167,10 @@ class FastCircleLayer: CALayer {
         let toPath = UIBezierPath()
         toPath.addArc(withCenter: .init(x: width/2, y: width/2), radius: width/2, startAngle: CGFloat(Double.pi * 1.5), endAngle: CGFloat((Double.pi * 1.5) - 0.3), clockwise: false)
         path.toValue = toPath.cgPath
-        path.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        path.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         path.duration = 2
         path.isRemovedOnCompletion = false
-        path.fillMode = kCAFillModeForwards
+        path.fillMode = CAMediaTimingFillMode.forwards
         point.add(path, forKey: "path")
     }
     

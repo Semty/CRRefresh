@@ -25,7 +25,7 @@
 
 import UIKit
 
-private var timeFunc = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+private var timeFunc = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
 
 private var upDuration: Double = 0.5
 
@@ -116,7 +116,7 @@ class CircleLayer :CAShapeLayer, CAAnimationDelegate {
         move.duration = upDuration
         move.timingFunction = timeFunc
         
-        move.fillMode = kCAFillModeForwards
+        move.fillMode = CAMediaTimingFillMode.forwards
         move.isRemovedOnCompletion = false
         add(move, forKey: move.keyPath)
     }
@@ -131,7 +131,7 @@ class CircleLayer :CAShapeLayer, CAAnimationDelegate {
         move.duration = upDuration
         move.timingFunction = timeFunc
         
-        move.fillMode = kCAFillModeForwards
+        move.fillMode = CAMediaTimingFillMode.forwards
         move.isRemovedOnCompletion = false
         move.delegate = self
         add(move, forKey: move.keyPath)
@@ -161,7 +161,7 @@ class SpinerLayer :CAShapeLayer, CAAnimationDelegate {
         self.fillColor = nil
         self.strokeColor = color.cgColor
         self.lineWidth = 2
-        self.lineCap = kCALineCapRound
+        self.lineCap = CAShapeLayerLineCap.round
         
         self.strokeStart = 0
         self.strokeEnd = 0
@@ -179,9 +179,9 @@ class SpinerLayer :CAShapeLayer, CAAnimationDelegate {
         rotate.fromValue = 0
         rotate.toValue = Double.pi * 2
         rotate.duration = 1
-        rotate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        rotate.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         rotate.repeatCount = HUGE
-        rotate.fillMode = kCAFillModeForwards
+        rotate.fillMode = CAMediaTimingFillMode.forwards
         rotate.isRemovedOnCompletion = false
         self.add(rotate, forKey: rotate.keyPath)
         
@@ -193,9 +193,9 @@ class SpinerLayer :CAShapeLayer, CAAnimationDelegate {
         endPoint.fromValue = 0
         endPoint.toValue = 1
         endPoint.duration = 1.8
-        endPoint.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        endPoint.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         endPoint.repeatCount = HUGE
-        endPoint.fillMode = kCAFillModeForwards
+        endPoint.fillMode = CAMediaTimingFillMode.forwards
         endPoint.isRemovedOnCompletion = false
         endPoint.delegate = self
         add(endPoint, forKey: endPoint.keyPath)
@@ -206,7 +206,7 @@ class SpinerLayer :CAShapeLayer, CAAnimationDelegate {
         startPoint.fromValue = 0
         startPoint.toValue = 1
         startPoint.duration = 0.8
-        startPoint.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        startPoint.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         startPoint.repeatCount = HUGE
         startPoint.delegate = self
         add(startPoint, forKey: startPoint.keyPath)
